@@ -20,6 +20,10 @@ const webhookHandlers = {
     const customer = (await stripe.customers.retrieve(
       data.customer as string
     )) as Stripe.Customer;
+    if (!customer) {
+      throw new Error('Customer not found');
+    }
+
     const userSnapshot = await db
       .collection('users')
       .doc(customer.metadata.firebaseUID)

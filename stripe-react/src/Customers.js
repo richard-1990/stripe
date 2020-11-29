@@ -1,10 +1,10 @@
+import React, { Suspense, useEffect, useState, useCallback } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useUser, AuthCheck } from 'reactfire';
 
 import firebase from 'firebase/app';
 
 import { auth, db } from './firebase';
-import { Suspense, useEffect, useState } from 'react';
 import { fetchFromApi } from './helpers';
 
 export const SignIn = () => {
@@ -37,17 +37,19 @@ const SaveCard = (props) => {
 
   const [setupIntent, setSetupIntent] = useState();
   const [wallet, setWallet] = useState([]);
-  const getWallet = async () => {
+
+  const getWallet = useCallback(async () => {
     if (user) {
       const paymentMethods = await fetchFromApi('wallet', { method: 'GET' });
       setWallet(paymentMethods);
     }
-  };
+  }, [user]);
+
   useEffect(() => {
     getWallet();
-  }, [getWallet, user]);
+  }, [getWallet]);
 
-  const createSetupIntent = async (event) => {
+  const createSetupIntent = async (_event) => {
     const si = await fetchFromApi('wallet');
     setSetupIntent(si);
   };

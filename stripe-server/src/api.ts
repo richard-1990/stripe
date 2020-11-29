@@ -18,7 +18,9 @@ app.use(cors({ origin: true }));
 // Sets rawBody for webhook handling
 app.use(
   express.json({
-    verify: (req, res, buffer) => (req['rawBody'] = buffer),
+    verify: (req, res, buffer) => {
+      req['rawBody'] = buffer;
+    },
   })
 );
 
