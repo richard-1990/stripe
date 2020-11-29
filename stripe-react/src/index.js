@@ -5,14 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { FirebaseAppProvider } from 'reactfire';
+import { firebaseConfig } from './firebase';
 
 export const stripePromise = loadStripe('pk_test_fYrf6FZnoTJxoYHeol4smwns');
 
 ReactDOM.render(
   <React.StrictMode>
-    <Elements stripe={stripePromise}>
-      <App />
-    </Elements>
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <Elements stripe={stripePromise}>
+        <App />
+      </Elements>
+    </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

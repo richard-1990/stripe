@@ -1,5 +1,4 @@
 import { config } from 'dotenv';
-import { app } from 'firebase-admin';
 import Stripe from 'stripe';
 
 import App from './api';
@@ -11,9 +10,9 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET, {
-  apiVersion: process.env.STRIPE_API_VERSION as string,
+  apiVersion: '2020-08-27',
 });
 
-App.listen(port, () =>
-  console.log(`App available on http://localhost:${port}`)
-);
+App.listen(port, () => {
+  console.info(`App available on http://localhost:${port}`);
+});

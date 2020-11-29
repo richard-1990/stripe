@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Checkout, CheckoutSuccess, CheckoutFail } from './Checkout';
 import Payments from './Payments';
 import Customers from './Customers';
-import Subscriptions from './Subscriptions';
+// import Subscriptions from './Subscriptions';
 
 function App() {
   return (
@@ -62,9 +62,9 @@ function App() {
             <Route path="/customers">
               <Customers />
             </Route>
-            <Route path="/subscriptions">
+            {/* <Route path="/subscriptions">
               <Subscriptions />
-            </Route>
+            </Route> */}
             <Route path="/success">
               <CheckoutSuccess />
             </Route>
@@ -84,7 +84,9 @@ function App() {
 function Home() {
   return (
     <>
-      <h2>Stripe React + Node.js</h2>
+      <div className="well">
+        <h2>Stripe React + Node.js Live Demo</h2>
+      </div>
     </>
   );
 }

@@ -10,12 +10,19 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {},
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
       }
-    }
-  }
+    ],
+    "comma-dangle": "off",
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }]
+  },
+  "settings": {}
 }

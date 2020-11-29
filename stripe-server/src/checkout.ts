@@ -1,5 +1,5 @@
-import { stripe } from './';
 import Stripe from 'stripe';
+import { stripe } from './index';
 
 const createStripeCheckoutSession = async (
   lineItems: Stripe.Checkout.SessionCreateParams.LineItem[]
